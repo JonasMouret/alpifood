@@ -5,8 +5,8 @@ services:
         image: postgres:11.2
         volumes:
             - db-data:/var/lib/postgresql/data
-        networks:
-            - traefik
+        # networks:
+        #     - traefik
         ports: 
             - '5432:5432'
     web:
@@ -24,15 +24,15 @@ services:
             - "traefik.port=80"
             - "traefik.frontend.redirect.redirectCode=301"
             - "traefik.frontend.redirect.permanent=true"
-        networks:
-            - traefik
+        # networks:
+        #     - traefik
         env_file:
             - dev.env
         depends_on:
             - db
-networks:
-    traefik:
-        external:
-            name: traefik_webgateway
+# networks:
+#     traefik:
+#         external:
+#             name: traefik_webgateway
 volumes:
     db-data:
