@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+from decouple import config
+
+POSTGRES_HOST = config('POSTGRES_HOST', default='db')
+POSTGRES_DB = config('POSTGRES_DB', default='postgres')
+POSTGRES_USER = config('POSTGRES_USER', default='postgres')
+POSTGRES_PASSWORD = config('POSTGRES_PASSWORD', default='')
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -82,15 +89,14 @@ WSGI_APPLICATION = 'alpifood.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'alpifood',
-        'USER': 'admin',
-        'PASSWORD': 'Dods23061850',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': POSTGRES_DB,
+        'USER': POSTGRES_USER,
+        'PASSWORD': POSTGRES_PASSWORD,
+        'HOST': POSTGRES_HOST,
+        'PORT': 5432,
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
