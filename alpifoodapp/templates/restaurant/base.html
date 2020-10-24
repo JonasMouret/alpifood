@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} Restaurant {% endblock %}
+
+{% block sidebar %}
+<div class="text-center">
+    <img src="{{ MEDIA_URL }}{{ request.user.restaurant.logo }}" width="70" height="70"/>
+    <br/>
+    <br/>
+    <h4>Hi , {{ request.user.get_full_name }}</h4>
+    <h5>{{ request.user.restaurant.name }}</h5>
+</div>
+
+<div>
+    <span class="text-uppercase">Dashboard</span>
+
+    <a href="{% url 'restaurant-meal' %}">Meal</a>
+    <a href="{% url 'restaurant-order' %}">Order</a>
+    <a href="{% url 'restaurant-report' %}">Report</a>
+
+    <span class="text-uppercase">Profile</span>
+    <a href="{% url 'restaurant-account' %}">Account</a>
+</div>
+
+<div class="text-center">
+    <a href="{% url 'restaurant-sign-out' %}?next={{ request.path }}" class="btn btn-pink"></a>
+
+</div>
+
+{% endblock %}
