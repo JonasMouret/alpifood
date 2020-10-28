@@ -13,6 +13,10 @@ def home (request):
 
 # Force User to be login to reach restaurant page
 
+#==================================================================================================#
+                                    # SIGN-IN FONCTION #
+#==================================================================================================#
+
 @login_required(login_url='/restaurant/sign-in/')
 def restaurant_home(request):
     return redirect(restaurant_order)
@@ -33,6 +37,11 @@ def restaurant_account(request):
         "user_form":user_form,
         "restaurant_form":restaurant_form,
     })
+
+
+#==================================================================================================#
+                                    # MEAL FONCTION #
+#==================================================================================================#
 
 @login_required(login_url='/restaurant/sign-in/')
 def restaurant_meal(request):
@@ -73,10 +82,25 @@ def restaurant_edit_meal(request, meal_id):
         "form":form
     })
 
+#==================================================================================================#
+                                    # ORDER FONCTION #
+#==================================================================================================#
+
 @login_required(login_url='/restaurant/sign-in/')
 def restaurant_order(request):
+    if request.method == "POST":
+        order = Order.object.get(id = request.POST["id"], restaurant = request.user.restaurant)
+        if order.status == Order.COOKING:
+            order.status == Order.READY
+            order.save()
+
+
     orders = Order.objects.filter(restaurant = request.user.restaurant).order_by("-id")
     return render(request, 'restaurant/order.html', {"orders":orders})
+
+#==================================================================================================#
+                                    # REPORT FONCTION #
+#==================================================================================================#
 
 @login_required(login_url='/restaurant/sign-in/')
 def restaurant_report(request):

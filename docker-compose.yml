@@ -17,13 +17,13 @@ services:
             - .:/alpifood
         ports:
             - "8000:8000"
-        labels:
-            - "traefik.docker.network=traefik"
-            - "traefik.backend=alpifood-api"
-            - "traefik.frontend.rule=Host:mobo-server.ovh"
-            - "traefik.port=80"
-            - "traefik.frontend.redirect.redirectCode=301"
-            - "traefik.frontend.redirect.permanent=true"
+        # labels:
+        #     - "traefik.docker.network=traefik"
+        #     - "traefik.backend=alpifood-api"
+        #     - "traefik.frontend.rule=Host:mobo-server.ovh"
+        #     - "traefik.port=80"
+        #     - "traefik.frontend.redirect.redirectCode=301"
+        #     - "traefik.frontend.redirect.permanent=true"
         # networks:
         #     - traefik
         env_file:

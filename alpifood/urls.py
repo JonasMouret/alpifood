@@ -20,8 +20,26 @@ urlpatterns = [
     url(r'^restaurant/meal/edit/(?P<meal_id>\d+)/$', views.restaurant_edit_meal, name='restaurant-edit-meal'),
     url(r'^restaurant/order/$', views.restaurant_order, name='restaurant-order'),
     url(r'^restaurant/report/$', views.restaurant_report, name='restaurant-report'),
+    
 
 
     url(r'^api/social/',include('rest_framework_social_oauth2.urls')),
-    # url(r'^api/customer/restaurants/$', apis.customers_get_restaurant),
+
+    url(r'^api/restaurant/order/notification/(?P<last_request_time>.+)/$', apis.restaurant_order_notification),
+
+    # API FOR CUSTOMER
+    url(r'^api/customer/restaurants/$', apis.customer_get_restaurant),
+    url(r'^api/customer/meals/(?P<restaurant_id>\d+)/$', apis.customer_get_meals),
+    url(r'^api/customer/order/add/$', apis.customer_add_order),
+    url(r'^api/customer/order/latest/$', apis.customer_get_latest_order),
+
+    # API FOR DRIVER
+    url(r'^api/driver/orders/ready/$', apis.driver_get_ready_orders),
+    url(r'^api/driver/order/pick/$', apis.driver_get_pick_order),
+    url(r'^api/driver/order/latest/$', apis.driver_get_latest_order),
+    url(r'^api/driver/order/complete/$', apis.driver_get_complete_order),
+    url(r'^api/driver/revenue/$', apis.driver_get_revenue),
+
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

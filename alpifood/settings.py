@@ -12,6 +12,14 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 from decouple import config
+from dotenv import load_dotenv
+
+load_dotenv()
+# FACEBOOK_APP_ID = os.getenv("FACEBOOK_APP_ID")
+# FACEBOOK_APP_SECRET = os.getenv("FACEBOOK_APP_SECRET")
+
+FACEBOOK_APP_ID = "731407827726699"
+FACEBOOK_APP_SECRET = "39c61b17aa817d2a7ba3a27a4169fde0"
 
 POSTGRES_HOST = config('POSTGRES_HOST', default='db')
 POSTGRES_DB = config('POSTGRES_DB', default='postgres')
@@ -38,18 +46,11 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'alpifoodapp',
-    'oauth2_provider',
-    'social.apps.django_app.default',
-    'rest_framework_social_oauth2',
-    'bootstrap3',
-    'social_django',
+    'django.contrib.admin', 'django.contrib.auth',
+    'django.contrib.contenttypes', 'django.contrib.sessions',
+    'django.contrib.messages', 'django.contrib.staticfiles', 'alpifoodapp',
+    'rest_framework_social_oauth2', 'oauth2_provider',
+    'social.apps.django_app.default', 'bootstrap3', 'social_django'
 ]
 
 MIDDLEWARE = [
@@ -140,3 +141,30 @@ LOGIN_REDIRECT_URL = '/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'rest_framework_social_oauth2.backends.DjangoOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# Facebook configuration
+SOCIAL_AUTH_FACEBOOK_KEY = FACEBOOK_APP_ID
+SOCIAL_AUTH_FACEBOOK_SECRET = FACEBOOK_APP_SECRET
+
+# Define SOCIAL_AUTH_FACEBOOK_SCOPE to get extra permissions from facebook. Email is not sent by default, to get it, you must request the email permission:
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {'fields': 'id,name,email'}
+
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.user.get_username',
+    'social.pipeline.user.create_user',
+    'alpifoodapp.social_auth_pipeline.create_user_by_type',  # <--- set the path to the function
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details',
+)
