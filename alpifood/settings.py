@@ -21,10 +21,11 @@ load_dotenv()
 FACEBOOK_APP_ID = "731407827726699"
 FACEBOOK_APP_SECRET = "39c61b17aa817d2a7ba3a27a4169fde0"
 
-POSTGRES_HOST = config('POSTGRES_HOST', default='db')
-POSTGRES_DB = config('POSTGRES_DB', default='postgres')
-POSTGRES_USER = config('POSTGRES_USER', default='postgres')
-POSTGRES_PASSWORD = config('POSTGRES_PASSWORD', default='')
+# POSTGRES_HOST = config('POSTGRES_HOST', default='db')
+# POSTGRES_DB = config('POSTGRES_DB', default='alpifood')
+# POSTGRES_USER = config('POSTGRES_USER', default='admin')
+# POSTGRES_PASSWORD = config('POSTGRES_PASSWORD', default='')
+
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -91,10 +92,10 @@ WSGI_APPLICATION = 'alpifood.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': POSTGRES_DB,
-        'USER': POSTGRES_USER,
-        'PASSWORD': POSTGRES_PASSWORD,
-        'HOST': POSTGRES_HOST,
+        'NAME': 'alpifood',
+        'USER': 'admin',
+        'PASSWORD': 'Dods23061850',
+        'HOST': 'localhost',
         'PORT': 5432,
     }
 }

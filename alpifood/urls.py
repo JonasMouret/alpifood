@@ -35,9 +35,9 @@ urlpatterns = [
 
     # API FOR DRIVER
     url(r'^api/driver/orders/ready/$', apis.driver_get_ready_orders),
-    url(r'^api/driver/order/pick/$', apis.driver_get_pick_order),
+    url(r'^api/driver/order/pick/$', apis.driver_pick_order),
     url(r'^api/driver/order/latest/$', apis.driver_get_latest_order),
-    url(r'^api/driver/order/complete/$', apis.driver_get_complete_order),
+    url(r'^api/driver/order/complete/$', apis.driver_complete_order),
     url(r'^api/driver/revenue/$', apis.driver_get_revenue),
 
 

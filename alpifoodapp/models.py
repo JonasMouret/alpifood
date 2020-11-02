@@ -3,7 +3,44 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 class Restaurant(models.Model):
+
+    PIZZA = 1
+    SAVOYARD = 2
+    MEAT = 3
+    FAST = 4
+    GASTRO = 5
+    ASIAN = 6
+    MODERN = 7
+    BURGER = 8
+    FONDU = 9
+    ITALIAN = 10
+    SNACK = 11
+    FRENCH = 12
+    ALSACIEN = 13
+    MEDITERANEEN = 14
+    WINE_BAR = 15
+    TAPAS = 16
+
+    CATEGORY_CHOICES = (
+        (PIZZA, "Pizza"),
+        (SAVOYARD, "Savoyard"),
+        (MEAT, "Meat"),
+        (FAST, "Fast-food"),
+        (GASTRO, "Gastro"),
+        (ASIAN, "Fast-food"), 
+        (MODERN, "Fast-food"),
+        (BURGER, "Fast-food"),
+        (FONDU, "Fast-food"),
+        (ITALIAN, "Fast-food"),
+        (SNACK, "Fast-food"),
+        (FRENCH, "Fast-food"),
+        (ALSACIEN, "Fast-food"),
+        (MEDITERANEEN, "Fast-food"),
+        (WINE_BAR, "Fast-food"),
+        (TAPAS, "Fast-food"),
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='restaurant')
+    category = models.IntegerField(choices=CATEGORY_CHOICES, default=0)
     name = models.CharField(max_length=500)
     phone = models.CharField(max_length=500)
     address = models.CharField(max_length=500)
@@ -31,7 +68,17 @@ class Driver(models.Model):
         return self.user.det_full_name()
 
 class Meal(models.Model):
+    STARTER = 1
+    MAIN_COURSE = 2
+    DESSERT = 3
+
+    CATEGORY_CHOICES = (
+        (STARTER, "Starter"),
+        (MAIN_COURSE, "Main course"),
+        (DESSERT, "Dessert"),
+    )
     restaurant = models.ForeignKey(Restaurant)
+    category = models.IntegerField(choices=CATEGORY_CHOICES, default=0)
     name = models.CharField(max_length=500)
     short_description = models.CharField(max_length=500, blank=True)
     image = models.ImageField(upload_to='meal_images/', blank=False)
