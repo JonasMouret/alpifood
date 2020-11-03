@@ -7,7 +7,7 @@ class Restaurant(models.Model):
     PIZZA = 1
     SAVOYARD = 2
     MEAT = 3
-    FAST = 4
+    FASTFOOD = 4
     GASTRO = 5
     ASIAN = 6
     MODERN = 7
@@ -17,33 +17,36 @@ class Restaurant(models.Model):
     SNACK = 11
     FRENCH = 12
     ALSACIEN = 13
-    MEDITERANEEN = 14
+    FISH = 14
     WINE_BAR = 15
     TAPAS = 16
+    BREAKFAST = 17
 
     CATEGORY_CHOICES = (
         (PIZZA, "Pizza"),
         (SAVOYARD, "Savoyard"),
         (MEAT, "Meat"),
-        (FAST, "Fast-food"),
+        (FASTFOOD, "Fast-food"),
         (GASTRO, "Gastro"),
-        (ASIAN, "Fast-food"), 
-        (MODERN, "Fast-food"),
-        (BURGER, "Fast-food"),
-        (FONDU, "Fast-food"),
-        (ITALIAN, "Fast-food"),
-        (SNACK, "Fast-food"),
-        (FRENCH, "Fast-food"),
-        (ALSACIEN, "Fast-food"),
-        (MEDITERANEEN, "Fast-food"),
-        (WINE_BAR, "Fast-food"),
-        (TAPAS, "Fast-food"),
+        (ASIAN, "Asian"), 
+        (MODERN, "Modern"),
+        (BURGER, "Burger"),
+        (FONDU, "Fondu"),
+        (ITALIAN, "Italian"),
+        (SNACK, "Snack"),
+        (FRENCH, "French"),
+        (ALSACIEN, "Alsacien"),
+        (FISH, "Fish"),
+        (WINE_BAR, "Wine-bar"),
+        (TAPAS, "Tapas"),
+        (BREAKFAST, "Breakfast")
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='restaurant')
     category = models.IntegerField(choices=CATEGORY_CHOICES, default=0)
     name = models.CharField(max_length=500)
     phone = models.CharField(max_length=500)
     address = models.CharField(max_length=500)
+
     logo = models.ImageField(upload_to='restaurant_logo/', blank=False)
 
     def __str__(self):
@@ -56,7 +59,7 @@ class Customer(models.Model):
     address = models.CharField(max_length=500, blank=True)
 
     def __str__(self):
-        return self.user.det_full_name()
+        return self.user.get_full_name()
 
 class Driver(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='driver')
@@ -65,7 +68,7 @@ class Driver(models.Model):
     address = models.CharField(max_length=500, blank=True)
 
     def __str__(self):
-        return self.user.det_full_name()
+        return self.user.get_full_name()
 
 class Meal(models.Model):
     STARTER = 1
@@ -92,12 +95,14 @@ class Order(models.Model):
     READY = 2
     ONTHEWAY = 3
     DELIVERED = 4
+    ACCEPTED = 5
 
     STATUS_CHOICES = (
         (COOKING, "Cooking"),
         (READY, "Ready"),
         (ONTHEWAY, "On the way"),
         (DELIVERED, "Delivered"),
+        (ACCEPTED, "Accepted"),
     )
 
     customer = models.ForeignKey(Customer)

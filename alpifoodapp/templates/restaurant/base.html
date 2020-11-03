@@ -39,6 +39,7 @@
     <br/>
     <h4>Hi , {{ request.user.get_full_name }}</h4>
     <h5>{{ request.user.restaurant.name }}</h5>
+    <h5>{{ request.user.restaurant.get_category_display }}</h5>
 </div>
 
 <div class="list-group">
