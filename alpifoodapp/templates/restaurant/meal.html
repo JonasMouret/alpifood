@@ -29,7 +29,7 @@
                             <td><a href="{% url 'restaurant-edit-meal' meal.id %}">{{ meal.name }}</a></td>
                             <td>{{ meal.short_description }}</td>
                             <td>{{ meal.price }}</td>
-                            <td class="text-center"><img class="img-rounded" src="{{ MEDIA_URL }}{{ mel.image }}" width="50" height="50"></td>
+                            <td class="text-center"><img class="img-rounded" src="{{ MEDIA_URL }}{{ meal.image }}" width="50" height="50"></td>
                         </tr>
                     {% endfor %}
                 </tbody>
