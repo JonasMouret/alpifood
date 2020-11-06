@@ -15,11 +15,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='meal',
             name='category',
-            field=models.IntegerField(choices=[(1, 'Starter'), (2, 'Main course'), (3, 'Dessert')], default=0),
+            field=models.IntegerField(choices=[(1, 'Cooking'), (2, 'Ready'), (3, 'On the way'), (4, 'Delivered'), (5, 'Accepted')]),
         ),
         migrations.AddField(
             model_name='restaurant',
             name='category',
-            field=models.IntegerField(choices=[(1, 'Pizza'), (2, 'Savoyard'), (3, 'Meat'), (4, 'Fast-food'), (5, 'Gastro'), (6, 'Fast-food'), (7, 'Fast-food'), (8, 'Fast-food'), (9, 'Fast-food'), (10, 'Fast-food'), (11, 'Fast-food'), (12, 'Fast-food'), (13, 'Fast-food'), (14, 'Fast-food'), (15, 'Fast-food'), (16, 'Fast-food')], default=0),
+            field=models.IntegerField(choices=[(1, 'Pizza'), (2, 'Savoyard'), (3, 'Meat'), (4, 'Fast-food'), (5, 'Gastro'), (6, 'Asian'), (7, 'Modern'), (8, 'Burger'), (9, 'Fondu'), (10, 'Italian'), (11, 'Snack'), (12, 'French'), (13, 'Alsacien'), (14, 'Fish'), (15, 'Wine-bar'), (16, 'Tapas'), (17, 'Breakfast')], default=0),
         ),
     ]

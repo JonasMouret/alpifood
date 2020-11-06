@@ -14,7 +14,7 @@ class RestaurantSerializer(serializers.ModelSerializer):
         model = Restaurant
         fields = ("id", "name", "category", "phone", "address", "logo")
 
-
+# Convert each meal to JSON for REST API
 class MealSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
 
@@ -28,7 +28,7 @@ class MealSerializer(serializers.ModelSerializer):
         fields = ("id", "category", "name", "short_description", "image", "price")
 
 
-
+# ORDER SERIALIZER
 class OrderCustomerSerializer(serializers.ModelSerializer):
     name = serializers.ReadOnlyField(source="user.get_full_name")
 
