@@ -86,6 +86,7 @@ class Meal(models.Model):
     short_description = models.CharField(max_length=500, blank=True)
     image = models.ImageField(upload_to='meal_images/', blank=False)
     price = models.IntegerField(default=0)
+    available = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
