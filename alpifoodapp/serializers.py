@@ -17,11 +17,15 @@ class RestaurantSerializer(serializers.ModelSerializer):
 # Convert each meal to JSON for REST API
 class MealSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
+    category = serializers.CharField(source='get_category_display')
 
     def get_image(self, meal):
         request = self.context.get('request')
         image_url = meal.image.url
         return request.build_absolute_uri(image_url)
+
+    def get_categories (self, meal):
+        return Meal.get_category_display
 
     class Meta:
         model = Meal

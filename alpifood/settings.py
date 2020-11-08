@@ -20,10 +20,10 @@ load_dotenv()
 
 FACEBOOK_APP_ID = "3679530455448167"
 FACEBOOK_APP_SECRET = "6af3e8583fd4942648e78e30c9e6d935"
-STRIPE_API_KEY = "pk_test_0igHwHTpPLz81HDdLUbmhFF600cipTYF7v"
+STRIPE_API_KEY = "pk_test_51HgdCFEdlzSI8jLlVMsuvHiD8mAXddYT7nRNuqUXswyLKdrz2DqBDPLPeaeparVvuUwN40VD8rEOjBzUKSqg58Ow001X5zz9ht"
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'pk_test_51HgdCFEdlzSI8jLlVMsuvHiD8mAXddYT7nRNuqUXswyLKdrz2DqBDPLPeaeparVvuUwN40VD8rEOjBzUKSqg58Ow001X5zz9ht'
+SECRET_KEY = 'sk_test_51HgdCFEdlzSI8jLlgRxCcAYtHNmsUsN0MzRYak18s0b1W0sTmygC0aBnALml1W2cxc6VOCpcsSKVc7CUz1UyupHk00LLEC4wL0'
 
 POSTGRES_HOST = config('POSTGRES_HOST', default='db')
 POSTGRES_DB = config('POSTGRES_DB', default='alpifood')
@@ -46,6 +46,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+APPEND_SLASH=False 
 
 
 # Application definition
@@ -55,7 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes', 'django.contrib.sessions',
     'django.contrib.messages', 'django.contrib.staticfiles', 'alpifoodapp',
     'rest_framework_social_oauth2', 'oauth2_provider',
-    'social.apps.django_app.default', 'bootstrap3', 'social_django', 'knox'
+    'social.apps.django_app.default', 'bootstrap3', 'social_django'
     # 'corsheaders',
 
 ]
@@ -186,4 +187,3 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.user.user_details',
 )
 
-STRIPE_API_KEY = STRIPE_API_KEY

@@ -91,11 +91,12 @@ def customer_add_order(request):
         if len(order_details) > 0:
 
             # Step 1: Create a charge: this will charge customer's card
+
             charge = stripe.Charge.create(
                 amount=order_total * 100,  # Amount in cents
-                currency="usd",
+                currency="eur",
                 source=stripe_token,
-                description="FoodTasker Order")
+                description="Order")
 
             if charge.status != "failed":
                 # Step 2 - Create an Order
