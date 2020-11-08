@@ -18,14 +18,17 @@ load_dotenv()
 # FACEBOOK_APP_ID = os.getenv("FACEBOOK_APP_ID")
 # FACEBOOK_APP_SECRET = os.getenv("FACEBOOK_APP_SECRET")
 
-FACEBOOK_APP_ID = "731407827726699"
-FACEBOOK_APP_SECRET = "39c61b17aa817d2a7ba3a27a4169fde0"
-STRIPE_API_KEY_ = "pk_test_0igHwHTpPLz81HDdLUbmhFF600cipTYF7v"
+FACEBOOK_APP_ID = "3679530455448167"
+FACEBOOK_APP_SECRET = "6af3e8583fd4942648e78e30c9e6d935"
+STRIPE_API_KEY = "pk_test_0igHwHTpPLz81HDdLUbmhFF600cipTYF7v"
 
-# POSTGRES_HOST = config('POSTGRES_HOST', default='db')
-# POSTGRES_DB = config('POSTGRES_DB', default='alpifood')
-# POSTGRES_USER = config('POSTGRES_USER', default='admin')
-# POSTGRES_PASSWORD = config('POSTGRES_PASSWORD', default='')
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'pk_test_51HgdCFEdlzSI8jLlVMsuvHiD8mAXddYT7nRNuqUXswyLKdrz2DqBDPLPeaeparVvuUwN40VD8rEOjBzUKSqg58Ow001X5zz9ht'
+
+POSTGRES_HOST = config('POSTGRES_HOST', default='db')
+POSTGRES_DB = config('POSTGRES_DB', default='alpifood')
+POSTGRES_USER = config('POSTGRES_USER', default='admin')
+POSTGRES_PASSWORD = config('POSTGRES_PASSWORD', default='')
 
 
 
@@ -36,8 +39,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'pk_test_51HgdCFEdlzSI8jLlVMsuvHiD8mAXddYT7nRNuqUXswyLKdrz2DqBDPLPeaeparVvuUwN40VD8rEOjBzUKSqg58Ow001X5zz9ht'
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -52,12 +55,16 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes', 'django.contrib.sessions',
     'django.contrib.messages', 'django.contrib.staticfiles', 'alpifoodapp',
     'rest_framework_social_oauth2', 'oauth2_provider',
-    'social.apps.django_app.default', 'bootstrap3'
+    'social.apps.django_app.default', 'bootstrap3', 'social_django', 'knox'
+    # 'corsheaders',
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'alpifood.middleware.open_access_middleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -94,10 +101,10 @@ WSGI_APPLICATION = 'alpifood.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'alpifood',
-        'USER': 'admin',
+        'NAME': 'postgres',
+        'USER': 'postgres',
         'PASSWORD': 'Dods23061850',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': 5432,
     }
 }
@@ -179,4 +186,4 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.user.user_details',
 )
 
-STRIPE_API_KEY = STRIPE_API_KEY_
+STRIPE_API_KEY = STRIPE_API_KEY

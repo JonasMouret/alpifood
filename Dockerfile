@@ -5,4 +5,4 @@ ENV PYTHONUNBUFFERED 1
 RUN mkdir /alpifood
 WORKDIR /alpifood
 ADD . /alpifood/
-RUN pip install -r requirementsV2.txt 
+RUN pip install -r requirements.txt 

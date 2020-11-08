@@ -3,6 +3,8 @@ version: "3"
 services:
     db:
         image: postgres:11.2
+        env_file: 
+            - dev.env
         volumes:
             - db-data:/var/lib/postgresql/data
         # networks:
