@@ -71,6 +71,7 @@ class Driver(models.Model):
         return self.user.get_full_name()
 
 class Meal(models.Model):
+    restaurant = models.ForeignKey(Restaurant)
     STARTER = 1
     MAIN_COURSE = 2
     DESSERT = 3
@@ -80,7 +81,6 @@ class Meal(models.Model):
         (MAIN_COURSE, "Main course"),
         (DESSERT, "Dessert"),
     )
-    restaurant = models.ForeignKey(Restaurant)
     category = models.IntegerField(choices=CATEGORY_CHOICES, default=0)
     name = models.CharField(max_length=500)
     short_description = models.CharField(max_length=500, blank=True)

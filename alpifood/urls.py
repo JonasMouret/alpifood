@@ -29,6 +29,7 @@ urlpatterns = [
 
     # Sign In/ Sign Up/ Sign Out
     url(r'^api/social/', include('rest_framework_social_oauth2.urls')),
+    url(r'^api/users/$', views.UserCreate.as_view(), name='account-create'),
     # /convert-token (sign in/ sign up)
     # /revoke-token (sign out)
     url(r'^api/restaurant/order/notification/(?P<last_request_time>.+)/$',

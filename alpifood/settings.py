@@ -54,11 +54,10 @@ APPEND_SLASH=False
 INSTALLED_APPS = [
     'django.contrib.admin', 'django.contrib.auth',
     'django.contrib.contenttypes', 'django.contrib.sessions',
+    'rest_framework.authtoken', 'rest_framework',
     'django.contrib.messages', 'django.contrib.staticfiles', 'alpifoodapp',
     'rest_framework_social_oauth2', 'oauth2_provider',
-    'social.apps.django_app.default', 'bootstrap3', 'social_django'
-    # 'corsheaders',
-
+    'social.apps.django_app.default', 'bootstrap3', 'social_django', 'django_extensions',
 ]
 
 MIDDLEWARE = [
